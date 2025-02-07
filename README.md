@@ -2,7 +2,6 @@
 
 ## Description
 This library allows control of the **AS1170** driver via **I2C** and a **GPIO Pin** for **Strobe control** on **Raspberry Pi**, enabling LED management with simple commands like `led.on()` and `led.off()`. It also supports adjustable intensity and a strobe mode.
-This library takes for granted that the **AS1170** id is
 ## Installation
 Since Raspberry Pi OS has stricter package management, it is recommended to install the library in a virtual environment to avoid conflicts.
 
@@ -28,7 +27,18 @@ source venv/bin/activate
 pip install as1170
 ```
 
-### 5 Using the Library
+### 5 AS1170 Setup
+
+The default ID for the AS1170 is 0x30 but you can change it by using
+```python
+set_id(0x31)
+```
+The default ID for the I2C Bus is the number 3 (GPIO Pins N. 4 and 5) but you can change it by using
+```python
+set_i2c_bus(1)
+```
+### 6 Using the library
+
 ```python
 from as1170 import led
 
@@ -45,7 +55,7 @@ time.sleep(1)
 led.off()
 ```
 
-### 6 Using the Strobe Mode
+### 7 Using the Strobe Mode
 ```python
 # Start strobe mode at 5 Hz (flashes until stopped manually)
 led.strobe(frequency=5)
@@ -57,12 +67,12 @@ time.sleep(10)
 led.off()
 ```
 
-### 7 Deactivate the Virtual Environment
+### 8 Deactivate the Virtual Environment
 ```sh
 deactivate
 ```
 
-## Uninstallation
+## 9 Uninstallation
 To remove the library from your virtual environment:
 ```sh
 pip uninstall as1170
