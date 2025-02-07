@@ -1,3 +1,31 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "AS1170-Python"
+version = "1.0.1"
+description = "Library to control with python the AS1170 Led driver with I2C and a Strobe GPIO Pin"
+authors = [
+    { name = "Alessandro Cursoli", email = "alessandro.cursoli@supernovaindustries.it" }
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.6"
+dependencies = [
+    "smbus2",
+    "RPi.GPIO"
+]
+
+[project.urls]
+Homepage = "https://github.com/SupernovaIndustries/AS1170-Python"
+Repository = "https://github.com/SupernovaIndustries/AS1170-Python"
+
+[tool.setuptools]
+packages = ["as1170"]
+
+[tool.setuptools.package-data]
+"as1170" = ["*.py"]
+
+[tool.setuptools.scripts]
+as1170_test = "as1170.driver:main"
