@@ -45,19 +45,14 @@ class LED:
         print(f"LED{1 if self.led_register == REG_CURRENT_LED1 else 2} OFF")
 
 # Create LED objects
-led1 = LED(1)
-led2 = LED(2)
+led = LED(1)
 
 # If used as a standalone script, run a basic test
 if __name__ == "__main__":
     try:
-        led1.on()
+        led.on()
         time.sleep(2)  # Keep LED on for 2 seconds
-        led1.off()
-
-        led2.on()
-        time.sleep(2)  # Keep LED on for 2 seconds
-        led2.off()
+        led.off()
     except KeyboardInterrupt:
         print("Exiting program...")
     finally:

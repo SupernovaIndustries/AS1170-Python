@@ -1,81 +1,53 @@
 # AS1170 Python Library
 
-## Descrizione
-Questa libreria permette di controllare il driver **AS1170** via **I2C** su **Raspberry Pi**, gestendo i LED con comandi semplici come `led1.on()` e `led1.off()`.
+## Description
+This library allows control of the **AS1170** driver via **I2C** on **Raspberry Pi**, enabling LED management with simple commands like `led1.on()` and `led1.off()`.
 
-## Installazione
-Poiché Raspberry Pi OS utilizza una gestione dei pacchetti più restrittiva, si consiglia di installare la libreria in un ambiente virtuale per evitare conflitti.
+## Installation
+Since Raspberry Pi OS has stricter package management, it is recommended to install the library in a virtual environment to avoid conflicts.
 
-### 1️⃣ Installare Python Virtual Environment
-Se non hai già `venv` installato, esegui:
+### 1?? Install Python Virtual Environment
+If `venv` is not installed, run:
 ```sh
 sudo apt install python3-venv
 ```
 
-### 2️⃣ Creare un Virtual Environment
-All'interno della cartella del progetto:
+### 2?? Create a Virtual Environment
+Inside your project folder:
 ```sh
 python3 -m venv venv
 ```
 
-### 3️⃣ Attivare il Virtual Environment
+### 3?? Activate the Virtual Environment
 ```sh
 source venv/bin/activate
 ```
 
-### 4️⃣ Installare la libreria
+### 4?? Install the Library
 ```sh
-pip install .
+pip install as1170
 ```
 
-Se vuoi installare in modalità **sviluppatore** (per modificare il codice senza reinstallare):
-```sh
-pip install -e .
-```
-
-### 5️⃣ Utilizzare la libreria
+### 5?? Using the Library
 ```python
-from as1170.driver import led1, led2
+from as1170.driver import led
 
-led1.on()
+led.on()
 time.sleep(1)
-led1.off()
+led.off()
 ```
 
-### 6️⃣ Uscire dal Virtual Environment
+### 6?? Deactivate the Virtual Environment
 ```sh
 deactivate
 ```
 
-## Installazione Senza Virtual Environment (Opzionale)
-Se vuoi installare la libreria globalmente, puoi forzare `pip` con:
-```sh
-pip install . --break-system-packages
-```
-⚠ **Attenzione:** Questo potrebbe causare problemi con i pacchetti di sistema. È consigliato usare un **virtual environment**.
-
----
-
-## Controllo dei LED
-Dopo aver installato la libreria, puoi controllare i LED come segue:
-
-```python
-from as1170.driver import led1, led2
-
-led1.on()  # Accende il LED1
-led2.on()  # Accende il LED2
-
-led1.off() # Spegne il LED1
-led2.off() # Spegne il LED2
-```
-
-## Disinstallazione
-Per rimuovere la libreria dal tuo ambiente virtuale:
+## Uninstallation
+To remove the library from your virtual environment:
 ```sh
 pip uninstall as1170
 ```
-Se vuoi eliminare completamente l'ambiente virtuale:
+If you want to completely remove the virtual environment:
 ```sh
 rm -rf venv
 ```
-
