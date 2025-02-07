@@ -3,9 +3,9 @@ import smbus2
 import RPi.GPIO as GPIO
 import threading
 
-# I2C bus configuration and AS1170 address
-I2C_BUS = 3  # Using Raspberry Pi I2C bus 3
-I2C_ADDR = 0x30  # AS1170 I2C address
+# Default I2C bus and AS1170 address
+I2C_BUS = 3  # Default Raspberry Pi I2C bus
+I2C_ADDR = 0x30  # Default AS1170 I2C address
 
 # AS1170 Registers
 REG_STROBE_SIGNAL = 0x07
@@ -21,6 +21,20 @@ GPIO.setup(STROBE_PIN, GPIO.OUT, initial=GPIO.LOW)
 
 # Initialize I2C bus
 bus = smbus2.SMBus(I2C_BUS)
+
+def set_i2c_bus(bus_id):
+    """Sets the I2C bus dynamically."""
+    global I2C_BUS, bus
+    I2C_BUS = bus_id
+    bus.close()  # Close the old bus before reassigning
+    bus = smbus2.SMBus(I2C_BUS)
+    print(f"I2C bus set to {I2C_BUS}")
+
+def set_id(new_id):
+    """Sets the AS1170 I2C address dynamically."""
+    global I2C_ADDR
+    I2C_ADDR = new_id
+    print(f"AS1170 I2C address set to {hex(I2C_ADDR)}")
 
 def write_register(register, value):
     """Writes a value to an AS1170 register."""
@@ -95,6 +109,9 @@ led = LEDController()
 # If used as a standalone script, run a basic test
 if __name__ == "__main__":
     try:
+        set_id(0x30)  # Example: Set I2C address
+        set_i2c_bus(3)  # Example: Set I2C bus
+        
         led.set_intensity(led1=300, led2=200)  # Example intensity settings in mA
         led.strobe(frequency=5)  # Strobe effect at 5 Hz until manually stopped
         time.sleep(10)  # Let it strobe for 10 seconds
