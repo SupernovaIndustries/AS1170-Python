@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="as1170",
-    version="0.1.0",
+    version="0.1.2",
     packages=find_packages(),
     install_requires=["smbus2", "RPi.GPIO"],
     author="Alessandro Cursoli",
